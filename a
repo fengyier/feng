@@ -1,0 +1,45 @@
+#include<stdio.h>
+#include<string.h>
+void sort(char S[],int begin,int end,int flag)
+{
+	for(int i=begin;i<=end;i++)
+		for(int j=begin;j<end;j++)
+		{
+			if(flag==0)
+			{
+				if(S[j]>S[j+1])
+				{
+					char t;
+					t=S[j],S[j]=S[j+1],S[j+1]=t; 
+				}
+			}
+			if(flag==1)
+			{
+				if(S[j]<S[j+1])
+				{
+					char t;
+					t=S[j],S[j]=S[j+1],S[j+1]=t; 
+				}
+			} 
+		}
+}
+int main()
+{	
+	char S[100];
+	gets(S);
+    int L=strlen(S);
+	int begin1=0,begin2=L/2,end2=L-1,end1=L/2-1;
+	if(L%2!=0)
+		begin2++;
+	sort(S,begin1,end1,1);
+	sort(S,begin2,end2,0);
+	for(int i=begin1,j=begin2;i<=end1;i++,j++)
+	{
+		char t;
+		t=S[i],S[i]=S[j],S[j]=t;
+	}
+	for(int k=0;k<=strlen(S);k++)
+	{
+		printf("%c",S[k]);
+	}
+}
